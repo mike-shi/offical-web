@@ -15,6 +15,20 @@
     <div class="nav-actions">
       <a href="#" class="btn btn-ghost">登录</a>
       <a href="#contact" class="btn btn-primary">预约演示 →</a>
+      <button class="nav-burger" [class.open]="mobileMenuOpen" (click)="toggleMobileMenu()" [attr.aria-expanded]="mobileMenuOpen" aria-label="菜单">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="nav-mobile-panel" [class.open]="mobileMenuOpen">
+    <a href="#products" (click)="closeMobileMenu()">产品方案</a>
+    <a href="#architecture" (click)="closeMobileMenu()">平台架构</a>
+    <a href="#solutions" (click)="closeMobileMenu()">解决方案</a>
+    <a href="#preview" (click)="closeMobileMenu()">产品体验</a>
+    <a href="#contact" (click)="closeMobileMenu()">关于我们</a>
+    <div class="nav-mobile-actions">
+      <a href="#contact" class="btn btn-primary" (click)="closeMobileMenu()">预约演示 →</a>
     </div>
   </div>
 </nav>

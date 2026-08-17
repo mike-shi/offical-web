@@ -27,4 +27,13 @@ describe('AppComponent', () => {
     app.switchProduct('itcm');
     expect(app.activeProduct).toBe('itcm');
   });
+
+  it('should toggle the mobile menu', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    app.toggleMobileMenu();
+    expect(app.mobileMenuOpen).toBe(true);
+    app.closeMobileMenu();
+    expect(app.mobileMenuOpen).toBe(false);
+  });
 });

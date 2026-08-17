@@ -16,6 +16,9 @@ export class AppComponent {
   demoEmail = '';
   demoSubmitted = false;
 
+  /** 移动端导航菜单 */
+  mobileMenuOpen = false;
+
   switchProduct(product: 'cmdb' | 'itcm'): void {
     this.activeProduct = product;
   }
@@ -23,6 +26,19 @@ export class AppComponent {
   @HostListener('window:scroll', [])
   onScroll(): void {
     this.isScrolled = window.scrollY > 50;
+  }
+
+  toggleMobileMenu(): void {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  closeMobileMenu(): void {
+    this.mobileMenuOpen = false;
+  }
+
+  @HostListener('document:keydown.escape', [])
+  onEscape(): void {
+    this.closeMobileMenu();
   }
 
   submitDemo(): void {
