@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>浙能数字 — IT基础设施智能管控平台 | CMDB + ITCM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   DESIGN SYSTEM — 浙能数字 IT基础设施智能管控平台官网
+   Style: Minimalism + Glassmorphism Hero
+   Pattern: Enterprise Gateway
+   Font: Plus Jakarta Sans + JetBrains Mono
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  /* ── Brand Colors ── */
+  --c-primary: #2563EB;
+  --c-primary-dark: #1D4ED8;
+  --c-primary-light: #3B82F6;
+  --c-primary-50: #EFF6FF;
+  --c-primary-100: #DBEAFE;
+
+  /* ── Accent / Status ── */
+  --c-accent: #059669;       /* 监控绿 */
+  --c-accent-light: #10B981;
+  --c-warning: #F59E0B;
+  --c-danger: #EF4444;
+  --c-purple: #8B5CF6;
+  --c-cyan: #06B6D4;
+
+  /* ── Dark Surfaces (Hero / Footer) ── */
+  --bg-dark: #0A0F1E;
+  --bg-dark-2: #0F172A;
+  --bg-dark-3: #1E293B;
+  --bg-card-dark: rgba(255,255,255,0.05);
+  --border-dark: rgba(255,255,255,0.08);
+
+  /* ── Light Surfaces (Content) ── */
+  --bg-light: #F8FAFC;
+  --bg-white: #FFFFFF;
+  --bg-muted: #F1F5F9;
+
+  /* ── Text ── */
+  --t-heading: #0F172A;
+  --t-body: #334155;
+  --t-muted: #64748B;
+  --t-light: #94A3B8;
+  --t-on-dark: #F1F5F9;
+  --t-on-dark-muted: #94A3B8;
+
+  /* ── Borders ── */
+  --border: #E2E8F0;
+  --border-strong: #CBD5E1;
+
+  /* ── Spacing (4px base) ── */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 20px; --sp-6: 24px; --sp-8: 32px; --sp-10: 40px;
+  --sp-12: 48px; --sp-16: 64px; --sp-20: 80px; --sp-24: 96px;
+
+  /* ── Radius ── */
+  --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --r-xl: 24px; --r-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
+  --shadow-xl: 0 24px 64px rgba(0,0,0,0.16);
+  --shadow-glow: 0 0 40px rgba(37,99,235,0.25);
+
+  /* ── Transitions ── */
+  --tr-fast: 150ms ease-out;
+  --tr: 250ms ease-out;
+  --tr-slow: 400ms ease-out;
+
+  /* ── Layout ── */
+  --max-w: 1200px;
+  --nav-h: 68px;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+body {
+  font-family:'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--t-body);
+  background: var(--bg-light);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a { color:inherit; text-decoration:none; }
+img { max-width:100%; display:block; }
+button { font-family:inherit; cursor:pointer; border:none; outline:none; }
+
+/* ═══ NAVIGATION ═══ */
+.nav {
+  position:fixed; top:0; left:0; right:0; height:var(--nav-h);
+  background: rgba(10,15,30,0.85);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-dark);
+  z-index:1000;
+  display:flex; align-items:center; justify-content:center;
+  transition: background var(--tr);
+}
+.nav-inner {
+  width:100%; max-width:var(--max-w); padding:0 var(--sp-6);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.nav-logo {
+  display:flex; align-items:center; gap:var(--sp-3);
+}
+.nav-logo-mark {
+  width:36px; height:36px; border-radius:var(--r-md);
+  background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-cyan) 100%);
+  display:flex; align-items:center; justify-content:center;
+  font-weight:800; font-size:18px; color:#fff;
+  box-shadow: 0 4px 12px rgba(37,99,235,0.4);
+}
+.nav-logo-text {
+  color:#fff; font-weight:700; font-size:17px; letter-spacing:-0.02em;
+}
+.nav-logo-text span { color:var(--t-on-dark-muted); font-weight:400; font-size:13px; }
+.nav-menu {
+  display:flex; align-items:center; gap:var(--sp-8);
+  list-style:none;
+}
+.nav-menu a {
+  color: var(--t-on-dark-muted); font-size:14px; font-weight:500;
+  transition: color var(--tr-fast);
+}
+.nav-menu a:hover { color:#fff; }
+.nav-actions { display:flex; align-items:center; gap:var(--sp-3); }
+.btn {
+  display:inline-flex; align-items:center; gap:var(--sp-2);
+  padding: 10px 20px; border-radius: var(--r-md);
+  font-size:14px; font-weight:600; transition: all var(--tr-fast);
+  white-space:nowrap;
+}
+.btn-ghost {
+  color: var(--t-on-dark-muted); background:transparent;
+}
+.btn-ghost:hover { color:#fff; background: rgba(255,255,255,0.08); }
+.btn-primary {
+  background: var(--c-primary); color:#fff;
+  box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+}
+.btn-primary:hover { background: var(--c-primary-dark); transform:translateY(-1px); box-shadow: 0 6px 20px rgba(37,99,235,0.4); }
+.btn-outline {
+  border:1.5px solid var(--border-strong); color:var(--t-heading); background:transparent;
+}
+.btn-outline:hover { border-color:var(--c-primary); color:var(--c-primary); }
+.btn-lg { padding:14px 28px; font-size:15px; }
+
+/* ═══ HERO ═══ */
+.hero {
+  min-height: 100vh; padding-top: var(--nav-h);
+  background: var(--bg-dark);
+  position:relative; overflow:hidden;
+  display:flex; align-items:center; justify-content:center;
+}
+/* Background grid + glow */
+.hero::before {
+  content:''; position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 80%);
+}
+.hero::after {
+  content:''; position:absolute;
+  width:600px; height:600px; border-radius:50%;
+  background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%);
+  top: -200px; right: -100px; pointer-events:none;
+}
+.hero-glow-2 {
+  position:absolute;
+  width:500px; height:500px; border-radius:50%;
+  background: radial-gradient(circle, rgba(6,182,212,0.1) 0%, transparent 70%);
+  bottom: -150px; left: -100px; pointer-events:none;
+}
+.hero-inner {
+  position:relative; z-index:2;
+  width:100%; max-width:var(--max-w); padding: 0 var(--sp-6);
+  display:grid; grid-template-columns: 1fr 1fr; gap:var(--sp-16);
+  align-items:center;
+}
+.hero-content { max-width:560px; }
+.hero-badge {
+  display:inline-flex; align-items:center; gap:var(--sp-2);
+  padding: 6px 14px; border-radius: var(--r-full);
+  background: rgba(37,99,235,0.12);
+  border: 1px solid rgba(37,99,235,0.25);
+  color: var(--c-primary-light); font-size:13px; font-weight:600;
+  margin-bottom: var(--sp-6);
+}
+.hero-badge .dot {
+  width:8px; height:8px; border-radius:50%;
+  background: var(--c-accent-light);
+  box-shadow: 0 0 8px var(--c-accent-light);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+.hero h1 {
+  font-size: 52px; font-weight:800; line-height:1.1;
+  color: #fff; letter-spacing:-0.03em;
+  margin-bottom: var(--sp-6);
+}
+.hero h1 .grad {
+  background: linear-gradient(135deg, var(--c-primary-light) 0%, var(--c-cyan) 50%, var(--c-accent-light) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero p {
+  font-size: 18px; line-height:1.7;
+  color: var(--t-on-dark-muted);
+  margin-bottom: var(--sp-8);
+}
+.hero-actions { display:flex; gap:var(--sp-4); margin-bottom: var(--sp-10); }
+.hero-stats {
+  display:flex; gap:var(--sp-12);
+  padding-top: var(--sp-8);
+  border-top: 1px solid var(--border-dark);
+}
+.hero-stat-num {
+  font-size: 32px; font-weight:800; color:#fff;
+  font-family:'JetBrains Mono', monospace;
+}
+.hero-stat-label {
+  font-size:13px; color:var(--t-on-dark-muted); margin-top:2px;
+}
+
+/* Hero Visual — Floating Dashboard Preview */
+.hero-visual {
+  position:relative;
+  perspective: 1200px;
+}
+.hero-card {
+  background: linear-gradient(135deg, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.95) 100%);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--r-xl);
+  padding: var(--sp-6);
+  box-shadow: var(--shadow-xl), 0 0 60px rgba(37,99,235,0.15);
+  backdrop-filter: blur(20px);
+  transform: rotateY(-8deg) rotateX(4deg);
+  transition: transform var(--tr-slow);
+}
+.hero-card:hover { transform: rotateY(-4deg) rotateX(2deg); }
+.hero-card-header {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom: var(--sp-5);
+}
+.hero-card-title {
+  font-size:14px; font-weight:600; color:var(--t-on-dark);
+  display:flex; align-items:center; gap:var(--sp-2);
+}
+.hero-card-title .live-dot {
+  width:8px; height:8px; border-radius:50%; background:var(--c-danger);
+  animation: pulse 1.5s infinite;
+}
+.hero-card-tag {
+  font-size:11px; padding:3px 8px; border-radius:var(--r-sm);
+  background: rgba(16,185,129,0.15); color:var(--c-accent-light);
+  font-weight:600;
+}
+/* Mini KPI Row */
+.mini-kpi-row { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-3); margin-bottom:var(--sp-5); }
+.mini-kpi {
+  background: rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06);
+  border-radius: var(--r-md); padding: var(--sp-3) var(--sp-4);
+}
+.mini-kpi-label { font-size:11px; color:var(--t-on-dark-muted); }
+.mini-kpi-val { font-size:22px; font-weight:700; color:#fff; font-family:'JetBrains Mono',monospace; }
+.mini-kpi-trend { font-size:11px; }
+.trend-up { color: var(--c-accent-light); }
+.trend-down { color: var(--c-danger); }
+/* Mini Chart */
+.mini-chart {
+  background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06);
+  border-radius: var(--r-md); padding: var(--sp-4); height:140px;
+  display:flex; align-items:flex-end; gap:4px;
+}
+.mini-bar {
+  flex:1; border-radius:3px 3px 0 0;
+  background: linear-gradient(180deg, var(--c-primary-light) 0%, var(--c-primary) 100%);
+  opacity:0.8; transition: opacity var(--tr-fast);
+}
+.mini-bar:hover { opacity:1; }
+.mini-bar.warn { background: linear-gradient(180deg, var(--c-warning) 0%, #D97706 100%); }
+.mini-bar.danger { background: linear-gradient(180deg, var(--c-danger) 0%, #B91C1C 100%); }
+/* Floating badges */
+.hero-float-1 {
+  position:absolute; top:-20px; right:-20px;
+  background: rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3);
+  border-radius: var(--r-md); padding: var(--sp-3) var(--sp-4);
+  display:flex; align-items:center; gap:var(--sp-2);
+  backdrop-filter: blur(10px);
+  animation: float 4s ease-in-out infinite;
+}
+.hero-float-1 .icon { width:28px; height:28px; border-radius:var(--r-sm); background:var(--c-accent); display:flex; align-items:center; justify-content:center; }
+.hero-float-1 .text { font-size:12px; color:#fff; }
+.hero-float-1 .text strong { font-size:15px; display:block; }
+
+.hero-float-2 {
+  position:absolute; bottom:-15px; left:-25px;
+  background: rgba(139,92,246,0.15); border:1px solid rgba(139,92,246,0.3);
+  border-radius: var(--r-md); padding: var(--sp-3) var(--sp-4);
+  display:flex; align-items:center; gap:var(--sp-2);
+  backdrop-filter: blur(10px);
+  animation: float 4s ease-in-out infinite reverse;
+}
+.hero-float-2 .icon { width:28px; height:28px; border-radius:var(--r-sm); background:var(--c-purple); display:flex; align-items:center; justify-content:center; }
+.hero-float-2 .text { font-size:12px; color:#fff; }
+.hero-float-2 .text strong { font-size:15px; display:block; }
+
+@keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+
+/* ═══ TRUST BAR ═══ */
+.trust-bar {
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--border);
+  padding: var(--sp-8) 0;
+}
+.trust-inner {
+  max-width:var(--max-w); margin:0 auto; padding:0 var(--sp-6);
+  display:flex; align-items:center; justify-content:space-between; gap:var(--sp-8);
+}
+.trust-label {
+  font-size:13px; color:var(--t-muted); font-weight:500;
+  white-space:nowrap;
+}
+.trust-logos {
+  display:flex; align-items:center; gap:var(--sp-10);
+  flex:1; justify-content:flex-end;
+}
+.trust-logo {
+  font-size:15px; font-weight:700; color:var(--t-light);
+  letter-spacing:-0.02em; transition: color var(--tr-fast);
+}
+.trust-logo:hover { color: var(--t-heading); }
+
+/* ═══ SECTION COMMON ═══ */
+.section {
+  padding: var(--sp-24) 0;
+}
+.section-inner {
+  max-width:var(--max-w); margin:0 auto; padding:0 var(--sp-6);
+}
+.section-header {
+  text-align:center; max-width:640px; margin:0 auto var(--sp-16);
+}
+.section-tag {
+  display:inline-block; padding:4px 12px; border-radius:var(--r-full);
+  background: var(--c-primary-50); color: var(--c-primary);
+  font-size:13px; font-weight:600; margin-bottom: var(--sp-4);
+}
+.section-title {
+  font-size: 40px; font-weight:800; color:var(--t-heading);
+  letter-spacing:-0.03em; line-height:1.2; margin-bottom: var(--sp-4);
+}
+.section-subtitle {
+  font-size: 17px; color: var(--t-muted); line-height:1.6;
+}
+
+/* ═══ PRODUCT SWITCHER ═══ */
+.product-section { background: var(--bg-white); }
+.product-tabs {
+  display:flex; justify-content:center; gap:var(--sp-3);
+  margin-bottom: var(--sp-12);
+}
+.product-tab {
+  padding: 12px 32px; border-radius: var(--r-full);
+  font-size:15px; font-weight:600; color:var(--t-muted);
+  background: var(--bg-muted); border:2px solid transparent;
+  transition: all var(--tr-fast);
+  display:flex; align-items:center; gap:var(--sp-2);
+}
+.product-tab.active {
+  background: #fff; color: var(--c-primary); border-color: var(--c-primary);
+  box-shadow: var(--shadow-md);
+}
+.product-tab .tab-icon { width:20px; height:20px; }
+
+/* Product Feature Grid */
+.product-features {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-6);
+}
+.feature-card {
+  background: var(--bg-white);
+  border:1px solid var(--border); border-radius: var(--r-lg);
+  padding: var(--sp-8) var(--sp-6);
+  transition: all var(--tr);
+  position:relative; overflow:hidden;
+}
+.feature-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background: var(--c-primary); transform: scaleX(0); transform-origin:left;
+  transition: transform var(--tr);
+}
+.feature-card:hover {
+  border-color: var(--c-primary-100);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+.feature-card:hover::before { transform:scaleX(1); }
+.feature-icon {
+  width:48px; height:48px; border-radius: var(--r-md);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom: var(--sp-5);
+}
+.feature-icon.blue { background: var(--c-primary-50); color: var(--c-primary); }
+.feature-icon.green { background: #ECFDF5; color: var(--c-accent); }
+.feature-icon.purple { background: #F5F3FF; color: var(--c-purple); }
+.feature-icon.cyan { background: #ECFEFF; color: var(--c-cyan); }
+.feature-icon.orange { background: #FFFBEB; color: #D97706; }
+.feature-icon.red { background: #FEF2F2; color: var(--c-danger); }
+.feature-card h3 {
+  font-size:18px; font-weight:700; color:var(--t-heading);
+  margin-bottom: var(--sp-3);
+}
+.feature-card p {
+  font-size:14px; color:var(--t-muted); line-height:1.6;
+}
+.feature-card .feature-tags {
+  display:flex; flex-wrap:wrap; gap:6px; margin-top:var(--sp-4);
+}
+.feature-card .feature-tag {
+  font-size:11px; padding:3px 8px; border-radius:var(--r-sm);
+  background: var(--bg-muted); color:var(--t-muted); font-weight:500;
+}
+
+/* ═══ ARCHITECTURE SECTION ═══ */
+.arch-section { background: var(--bg-dark); position:relative; overflow:hidden; }
+.arch-section::before {
+  content:''; position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.arch-section .section-title { color:#fff; }
+.arch-section .section-subtitle { color: var(--t-on-dark-muted); }
+.arch-section .section-tag { background: rgba(37,99,235,0.15); color: var(--c-primary-light); }
+
+.arch-diagram {
+  position:relative; z-index:2;
+  display:flex; flex-direction:column; gap:var(--sp-3);
+  max-width:960px; margin:0 auto;
+}
+.arch-layer {
+  display:flex; gap:var(--sp-3); align-items:stretch;
+}
+.arch-layer-label {
+  width:140px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:flex-end;
+  font-size:13px; font-weight:600; color:var(--t-on-dark-muted);
+  text-align:right; padding-right:var(--sp-4);
+}
+.arch-blocks { display:flex; gap:var(--sp-3); flex:1; }
+.arch-block {
+  flex:1; background: rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius: var(--r-md); padding: var(--sp-4) var(--sp-5);
+  text-align:center; transition: all var(--tr-fast);
+}
+.arch-block:hover {
+  background: rgba(37,99,235,0.12); border-color: rgba(37,99,235,0.3);
+}
+.arch-block-icon { font-size:24px; margin-bottom:4px; }
+.arch-block-title { font-size:14px; font-weight:600; color:#fff; }
+.arch-block-desc { font-size:11px; color:var(--t-on-dark-muted); margin-top:2px; }
+.arch-block.accent {
+  background: rgba(37,99,235,0.1); border-color: rgba(37,99,235,0.25);
+}
+.arch-block.green {
+  background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.25);
+}
+.arch-block.purple {
+  background: rgba(139,92,246,0.1); border-color: rgba(139,92,246,0.25);
+}
+.arch-connector {
+  width:2px; height:20px; margin:0 auto;
+  background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.3));
+}
+
+/* ═══ STATS SECTION ═══ */
+.stats-section {
+  background: linear-gradient(135deg, var(--c-primary) 0%, var(--c-primary-dark) 100%);
+  padding: var(--sp-20) 0;
+}
+.stats-grid {
+  max-width:var(--max-w); margin:0 auto; padding:0 var(--sp-6);
+  display:grid; grid-template-columns:repeat(4,1fr); gap:var(--sp-8);
+}
+.stat-item { text-align:center; color:#fff; }
+.stat-num {
+  font-size: 48px; font-weight:800; font-family:'JetBrains Mono',monospace;
+  line-height:1; margin-bottom: var(--sp-2);
+}
+.stat-num .unit { font-size:20px; font-weight:600; opacity:0.8; }
+.stat-label { font-size:15px; opacity:0.85; }
+
+/* ═══ SOLUTIONS BY ROLE ═══ */
+.role-section { background: var(--bg-muted); }
+.role-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-6);
+}
+.role-card {
+  background:var(--bg-white); border:1px solid var(--border);
+  border-radius: var(--r-lg); padding: var(--sp-8) var(--sp-6);
+  transition: all var(--tr);
+}
+.role-card:hover { box-shadow: var(--shadow-lg); transform:translateY(-4px); }
+.role-avatar {
+  width:56px; height:56px; border-radius:var(--r-md);
+  display:flex; align-items:center; justify-content:center;
+  font-size:24px; font-weight:700; color:#fff;
+  margin-bottom: var(--sp-5);
+}
+.role-card h3 { font-size:18px; font-weight:700; color:var(--t-heading); margin-bottom:var(--sp-2); }
+.role-card .role-desc { font-size:14px; color:var(--t-muted); margin-bottom:var(--sp-5); }
+.role-benefits { list-style:none; }
+.role-benefits li {
+  font-size:14px; color:var(--t-body); padding:var(--sp-2) 0;
+  display:flex; align-items:flex-start; gap:var(--sp-2);
+  border-bottom:1px solid var(--border);
+}
+.role-benefits li:last-child { border-bottom:none; }
+.role-benefits li .check {
+  width:18px; height:18px; border-radius:50%;
+  background: var(--c-accent); flex-shrink:0; margin-top:2px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; color:#fff;
+}
+
+/* ═══ DASHBOARD PREVIEW SECTION ═══ */
+.preview-section { background: var(--bg-white); }
+.preview-grid {
+  display:grid; grid-template-columns: 1fr 1fr; gap:var(--sp-12);
+  align-items:center;
+}
+.preview-content h2 {
+  font-size: 36px; font-weight:800; color:var(--t-heading);
+  letter-spacing:-0.03em; margin-bottom: var(--sp-5);
+}
+.preview-content p {
+  font-size:16px; color:var(--t-muted); line-height:1.7;
+  margin-bottom: var(--sp-6);
+}
+.preview-list { list-style:none; margin-bottom: var(--sp-8); }
+.preview-list li {
+  display:flex; align-items:flex-start; gap:var(--sp-3);
+  padding: var(--sp-3) 0; font-size:15px; color:var(--t-body);
+}
+.preview-list li .check-icon {
+  width:24px; height:24px; border-radius:50%;
+  background: #ECFDF5; color:var(--c-accent);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; font-size:14px; font-weight:700;
+}
+.preview-mockup {
+  background: linear-gradient(135deg, var(--bg-dark-2) 0%, var(--bg-dark) 100%);
+  border-radius: var(--r-xl); padding: var(--sp-5);
+  box-shadow: var(--shadow-xl);
+  border:1px solid rgba(255,255,255,0.08);
+}
+.preview-mockup-header {
+  display:flex; align-items:center; gap:var(--sp-2);
+  padding-bottom: var(--sp-4); border-bottom:1px solid rgba(255,255,255,0.06);
+  margin-bottom: var(--sp-4);
+}
+.preview-mockup-dot { width:10px; height:10px; border-radius:50%; }
+.preview-mockup-body {
+  display:grid; grid-template-columns:repeat(2,1fr); gap:var(--sp-3);
+}
+.preview-mockup-card {
+  background: rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06);
+  border-radius:var(--r-md); padding:var(--sp-4);
+}
+.preview-mockup-card .label { font-size:11px; color:var(--t-on-dark-muted); margin-bottom:4px; }
+.preview-mockup-card .value { font-size:24px; font-weight:700; color:#fff; font-family:'JetBrains Mono',monospace; }
+.preview-mockup-card .bar {
+  height:6px; border-radius:3px; background:rgba(255,255,255,0.06);
+  margin-top:var(--sp-3); overflow:hidden;
+}
+.preview-mockup-card .bar-fill {
+  height:100%; border-radius:3px;
+  background: linear-gradient(90deg, var(--c-primary) 0%, var(--c-cyan) 100%);
+}
+.preview-mockup-card .bar-fill.green { background: linear-gradient(90deg, var(--c-accent) 0%, var(--c-accent-light) 100%); }
+.preview-mockup-card .bar-fill.orange { background: linear-gradient(90deg, var(--c-warning) 0%, #D97706 100%); }
+
+/* ═══ CTA SECTION ═══ */
+.cta-section {
+  background: var(--bg-dark); padding: var(--sp-24) 0;
+  position:relative; overflow:hidden;
+}
+.cta-section::before {
+  content:''; position:absolute;
+  width:800px; height:800px; border-radius:50%;
+  background: radial-gradient(circle, rgba(37,99,235,0.1) 0%, transparent 70%);
+  top:50%; left:50%; transform:translate(-50%,-50%);
+}
+.cta-inner {
+  position:relative; z-index:2;
+  max-width:720px; margin:0 auto; padding:0 var(--sp-6);
+  text-align:center;
+}
+.cta-inner h2 {
+  font-size: 42px; font-weight:800; color:#fff;
+  letter-spacing:-0.03em; margin-bottom: var(--sp-5);
+}
+.cta-inner p {
+  font-size:18px; color:var(--t-on-dark-muted); margin-bottom:var(--sp-8);
+}
+.cta-form {
+  display:flex; gap:var(--sp-3); max-width:480px; margin:0 auto;
+}
+.cta-input {
+  flex:1; padding:14px 20px; border-radius:var(--r-md);
+  background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12);
+  color:#fff; font-size:15px; font-family:inherit; outline:none;
+  transition: border-color var(--tr-fast);
+}
+.cta-input::placeholder { color: var(--t-on-dark-muted); }
+.cta-input:focus { border-color: var(--c-primary); }
+.cta-actions { display:flex; justify-content:center; gap:var(--sp-4); margin-top:var(--sp-6); }
+
+/* ═══ FOOTER ═══ */
+.footer {
+  background: var(--bg-dark); border-top:1px solid var(--border-dark);
+  padding: var(--sp-16) 0 var(--sp-8);
+}
+.footer-inner {
+  max-width:var(--max-w); margin:0 auto; padding:0 var(--sp-6);
+}
+.footer-grid {
+  display:grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap:var(--sp-8);
+  margin-bottom: var(--sp-12);
+}
+.footer-brand .nav-logo { margin-bottom: var(--sp-4); }
+.footer-brand p { font-size:14px; color:var(--t-on-dark-muted); line-height:1.6; max-width:280px; }
+.footer-col h4 { font-size:14px; font-weight:700; color:#fff; margin-bottom:var(--sp-4); }
+.footer-col ul { list-style:none; }
+.footer-col li { margin-bottom: var(--sp-3); }
+.footer-col a { font-size:13px; color:var(--t-on-dark-muted); transition:color var(--tr-fast); }
+.footer-col a:hover { color:#fff; }
+.footer-bottom {
+  padding-top: var(--sp-8); border-top:1px solid var(--border-dark);
+  display:flex; justify-content:space-between; align-items:center;
+}
+.footer-bottom p { font-size:13px; color:var(--t-on-dark-muted); }
+.footer-bottom .footer-links { display:flex; gap:var(--sp-6); }
+.footer-bottom .footer-links a { font-size:13px; color:var(--t-on-dark-muted); }
+.footer-bottom .footer-links a:hover { color:#fff; }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns:1fr; gap:var(--sp-12); }
+  .hero h1 { font-size:40px; }
+  .product-features { grid-template-columns:repeat(2,1fr); }
+  .role-grid { grid-template-columns:1fr; }
+  .preview-grid { grid-template-columns:1fr; }
+  .stats-grid { grid-template-columns:repeat(2,1fr); }
+  .footer-grid { grid-template-columns:1fr 1fr; }
+  .nav-menu { display:none; }
+}
+@media (max-width: 640px) {
+  .hero h1 { font-size:32px; }
+  .section-title { font-size:28px; }
+  .product-features { grid-template-columns:1fr; }
+  .stats-grid { grid-template-columns:1fr; }
+  .hero-stats { flex-wrap:wrap; gap:var(--sp-6); }
+  .cta-form { flex-direction:column; }
+  .arch-layer-label { display:none; }
+  .arch-blocks { flex-wrap:wrap; }
+  .arch-block { min-width:140px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark">浙</div>
+      <div class="nav-logo-text">浙能数字<span> · IT智能管控</span></div>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="#products">产品方案</a></li>
+      <li><a href="#architecture">平台架构</a></li>
+      <li><a href="#roles">解决方案</a></li>
+      <li><a href="#preview">产品体验</a></li>
+      <li><a href="#contact">关于我们</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="#" class="btn btn-ghost">登录</a>
+      <a href="#contact" class="btn btn-primary">预约演示 →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-glow-2"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        浙能集团 · 企业级IT基础设施管控平台
+      </div>
+      <h1>
+        让每一项<span class="grad">IT资产</span>可见可控<br>
+        让每一次<span class="grad">故障预警</span>先人一步
+      </h1>
+      <p>
+        融合CMDB配置管理数据库与ITCM集中监控平台，构建从资产纳管、自动发现、拓扑可视化到实时告警、智能巡检的全链路IT运维体系，助力企业数字化转型。
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary btn-lg">预约产品演示</a>
+        <a href="#products" class="btn btn-ghost btn-lg" style="border:1px solid rgba(255,255,255,0.15);">了解产品 ↓</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">2,178</div>
+          <div class="hero-stat-label">纳管节点</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">99.99<span style="font-size:18px;">%</span></div>
+          <div class="hero-stat-label">监控可用性</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">&lt;30<span style="font-size:18px;">s</span></div>
+          <div class="hero-stat-label">告警延迟</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Visual -->
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-header">
+          <div class="hero-card-title">
+            <span class="live-dot"></span>
+            IT运维监控中心
+          </div>
+          <div class="hero-card-tag">● 实时</div>
+        </div>
+        <!-- Mini KPI Row -->
+        <div class="mini-kpi-row">
+          <div class="mini-kpi">
+            <div class="mini-kpi-label">服务器</div>
+            <div class="mini-kpi-val">486</div>
+            <div class="mini-kpi-trend trend-up">↑ 2.3%</div>
+          </div>
+          <div class="mini-kpi">
+            <div class="mini-kpi-label">CPU均值</div>
+            <div class="mini-kpi-val">42<span style="font-size:14px;">%</span></div>
+            <div class="mini-kpi-trend trend-down">↓ 5.1%</div>
+          </div>
+          <div class="mini-kpi">
+            <div class="mini-kpi-label">告警</div>
+            <div class="mini-kpi-val" style="color:#F87171;">7</div>
+            <div class="mini-kpi-trend trend-up">↑ 3</div>
+          </div>
+        </div>
+        <!-- Mini Chart -->
+        <div class="mini-chart">
+          <div class="mini-bar" style="height:45%"></div>
+          <div class="mini-bar" style="height:62%"></div>
+          <div class="mini-bar" style="height:38%"></div>
+          <div class="mini-bar" style="height:75%"></div>
+          <div class="mini-bar warn" style="height:85%"></div>
+          <div class="mini-bar" style="height:55%"></div>
+          <div class="mini-bar" style="height:48%"></div>
+          <div class="mini-bar" style="height:70%"></div>
+          <div class="mini-bar danger" style="height:92%"></div>
+          <div class="mini-bar" style="height:60%"></div>
+          <div class="mini-bar" style="height:50%"></div>
+          <div class="mini-bar" style="height:65%"></div>
+        </div>
+      </div>
+      <!-- Floating Badge 1 -->
+      <div class="hero-float-1">
+        <div class="icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        </div>
+        <div class="text">系统正常<strong>99.99%</strong></div>
+      </div>
+      <!-- Floating Badge 2 -->
+      <div class="hero-float-2">
+        <div class="icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        </div>
+        <div class="text">资产纳管<strong>2,178+</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TRUST BAR ═══ -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-label">已服务浙能集团旗下</div>
+    <div class="trust-logos">
+      <div class="trust-logo">浙能电力</div>
+      <div class="trust-logo">浙能天然气</div>
+      <div class="trust-logo">浙能煤炭</div>
+      <div class="trust-logo">浙能石油</div>
+      <div class="trust-logo">浙能科创</div>
+      <div class="trust-logo">城市燃气</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PRODUCTS SECTION ═══ -->
+<section class="section product-section" id="products">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">核心产品</span>
+      <h2 class="section-title">两大平台，一个生态</h2>
+      <p class="section-subtitle">CMDB资产管理系统与ITCM集中监控系统深度联动，构建从资产到监控的完整闭环</p>
+    </div>
+
+    <!-- Product Tabs -->
+    <div class="product-tabs">
+      <button class="product-tab active" onclick="switchProduct('cmdb')">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        CMDB 资产管理系统
+      </button>
+      <button class="product-tab" onclick="switchProduct('itcm')">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        ITCM 集中监控系统
+      </button>
+    </div>
+
+    <!-- CMDB Features -->
+    <div id="cmdb-features" class="product-features">
+      <div class="feature-card">
+        <div class="feature-icon blue">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </div>
+        <h3>全生命周期资产管理</h3>
+        <p>从采购入库、领用部署、变更维护到退役报废，资产全状态可追溯，支持自定义资产属性与审批工作流。</p>
+        <div class="feature-tags">
+          <span class="feature-tag">入库/出库</span>
+          <span class="feature-tag">变更审批</span>
+          <span class="feature-tag">退役回收</span>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon green">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <h3>自动发现与纳管</h3>
+        <p>支持Agent、SNMP、SSH等多种协议自动扫描网络设备、服务器、中间件，新资产一键纳管，减少人工录入。</p>
+        <div class="feature-tags">
+          <span class="feature-tag">网络扫描</span>
+          <span class="feature-tag">Agent采集</span>
+          <span class="feature-tag">自动归类</span>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon purple">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3>资产拓扑可视化</h3>
+        <p>自动构建网络拓扑关系图，直观展示设备间连接与依赖关系，支持多层下钻、路径分析和影响评估。</p>
+        <div class="feature-tags">
+          <span class="feature-tag">拓扑图</span>
+          <span class="feature-tag">依赖分析</span>
+          <span class="feature-tag">影响评估</span>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon cyan">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <h3>移动端二维码巡检</h3>
+        <p>每项资产生成唯一二维码，手机扫码即可查看详情、更新状态、提交报修，现场运维效率提升80%。</p>
+        <div class="feature-tags">
+          <span class="feature-tag">QR扫码</span>
+          <span class="feature-tag">移动端</span>
+          <span class="feature-tag">现场报修</span>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon orange">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3>合规审计与报表</h3>
+        <p>内置等保2.0、ISO27001等合规检查模板，自动生成资产盘点报告、变更审计日志，满足监管要求。</p>
+        <div class="feature-tags">
+          <span class="feature-tag">等保合规</span>
+          <span class="feature-tag">盘点报告</span>
+          <span class="feature-tag">审计日志</span>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon red">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>CMDB CI关系管理</h3>
+        <p>基于ITIL规范管理配置项（CI）及其关系，支持多层级CI分类、关系类型自定义和版本对比。</p>
+        <div class="feature-tags">
+          <span class="feature-tag">ITIL规范</span>
+          <span class="feature-tag">CI关系链</span>
+          <span class="feature-tag">版本管理</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ITCM Features -->
+    <div id="itcm-features" class="product-features" style="display:none;">
+      <div class="feature-card">
+        <div class="feature-icon blue">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3>全维度实时监控</h3>
+        <p>覆盖服务器、网络设备、中间件、数据库、应用服务五大层级，200+监控指标7×24小时不间断采集。</p>
+        <div class="feature-tags">
+          <span class="feature-tag">200+指标</span>
+          <span class="feature-tag">30秒采集</span>
+          <span class="feature-tag">7×24h</span>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon red">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <h3>智能告警与分级</h3>
+        <p>支持阈值告警、趋势预测、异常检测三种模式，自动去重、聚合、分级，通过企微/短信/邮件多渠道推送。</p>
+        <div class="feature-tags">
+          <span class="feature-tag">阈值告警</span>
+          <span class="feature-tag">趋势预测</span>
+          <span class="feature-tag">多渠道推送</span>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon purple">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        </div>
+        <h3>3D基础设施可视化</h3>
+        <p>3D地球展示全球节点分布，机房3D漫游展示机柜布局，大屏一键投屏，运维态势一目了然。</p>
+        <div class="feature-tags">
+          <span class="feature-tag">3D地球</span>
+          <span class="feature-tag">机房漫游</span>
+          <span class="feature-tag">大屏投屏</span>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon green">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>自动化巡检</h3>
+        <p>自定义巡检模板与计划，自动执行检查项并生成报告，异常自动建单流转，巡检效率提升10倍。</p>
+        <div class="feature-tags">
+          <span class="feature-tag">巡检模板</span>
+          <span class="feature-tag">自动报告</span>
+          <span class="feature-tag">异常建单</span>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon cyan">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>3D大屏监控中心</h3>
+        <p>多屏拼接大屏展示KPI总览、资源分布、告警趋势、机房环境，支持全屏沉浸式运维指挥。</p>
+        <div class="feature-tags">
+          <span class="feature-tag">KPI总览</span>
+          <span class="feature-tag">告警趋势</span>
+          <span class="feature-tag">全屏模式</span>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon orange">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11H1l8-8v6h6V3l8 8h-8v6h-6v-6z"/></svg>
+        </div>
+        <h3>CMDB联动与根因分析</h3>
+        <p>告警自动关联CMDB资产拓扑，快速定位故障影响范围，AI辅助根因分析，平均故障恢复缩短60%。</p>
+        <div class="feature-tags">
+          <span class="feature-tag">拓扑联动</span>
+          <span class="feature-tag">影响分析</span>
+          <span class="feature-tag">AI根因</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ARCHITECTURE SECTION ═══ -->
+<section class="section arch-section" id="architecture">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">平台架构</span>
+      <h2 class="section-title">一体化IT运维技术架构</h2>
+      <p class="section-subtitle">五层架构设计，从数据采集到智能分析，构建企业级IT运维底座</p>
+    </div>
+
+    <div class="arch-diagram">
+      <!-- Layer 1: 展示层 -->
+      <div class="arch-layer">
+        <div class="arch-layer-label">展示层</div>
+        <div class="arch-blocks">
+          <div class="arch-block accent">
+            <div class="arch-block-icon">📊</div>
+            <div class="arch-block-title">3D运维大屏</div>
+            <div class="arch-block-desc">沉浸式监控</div>
+          </div>
+          <div class="arch-block accent">
+            <div class="arch-block-icon">🖥️</div>
+            <div class="arch-block-title">CMDB管理台</div>
+            <div class="arch-block-desc">资产管理</div>
+          </div>
+          <div class="arch-block accent">
+            <div class="arch-block-icon">📱</div>
+            <div class="arch-block-title">移动端App</div>
+            <div class="arch-block-desc">扫码巡检</div>
+          </div>
+          <div class="arch-block accent">
+            <div class="arch-block-icon">🔌</div>
+            <div class="arch-block-title">OpenAPI</div>
+            <div class="arch-block-desc">系统集成</div>
+          </div>
+        </div>
+      </div>
+      <div class="arch-connector"></div>
+
+      <!-- Layer 2: 应用层 -->
+      <div class="arch-layer">
+        <div class="arch-layer-label">应用层</div>
+        <div class="arch-blocks">
+          <div class="arch-block green">
+            <div class="arch-block-icon">🔗</div>
+            <div class="arch-block-title">资产纳管</div>
+            <div class="arch-block-desc">全生命周期</div>
+          </div>
+          <div class="arch-block green">
+            <div class="arch-block-icon">📡</div>
+            <div class="arch-block-title">实时监控</div>
+            <div class="arch-block-desc">200+指标</div>
+          </div>
+          <div class="arch-block green">
+            <div class="arch-block-icon">⚠️</div>
+            <div class="arch-block-title">告警引擎</div>
+            <div class="arch-block-desc">智能分级</div>
+          </div>
+          <div class="arch-block green">
+            <div class="arch-block-icon">🔍</div>
+            <div class="arch-block-title">自动巡检</div>
+            <div class="arch-block-desc">模板化</div>
+          </div>
+          <div class="arch-block green">
+            <div class="arch-block-icon">📈</div>
+            <div class="arch-block-title">报表分析</div>
+            <div class="arch-block-desc">可视化</div>
+          </div>
+        </div>
+      </div>
+      <div class="arch-connector"></div>
+
+      <!-- Layer 3: 数据层 -->
+      <div class="arch-layer">
+        <div class="arch-layer-label">数据层</div>
+        <div class="arch-blocks">
+          <div class="arch-block purple">
+            <div class="arch-block-icon">🗄️</div>
+            <div class="arch-block-title">CMDB数据库</div>
+            <div class="arch-block-desc">配置项管理</div>
+          </div>
+          <div class="arch-block purple">
+            <div class="arch-block-icon">⏱️</div>
+            <div class="arch-block-title">时序数据库</div>
+            <div class="arch-block-desc">监控指标</div>
+          </div>
+          <div class="arch-block purple">
+            <div class="arch-block-icon">📜</div>
+            <div class="arch-block-title">日志中心</div>
+            <div class="arch-block-desc">ELK Stack</div>
+          </div>
+          <div class="arch-block purple">
+            <div class="arch-block-icon">🔄</div>
+            <div class="arch-block-title">消息队列</div>
+            <div class="arch-block-desc">Kafka</div>
+          </div>
+        </div>
+      </div>
+      <div class="arch-connector"></div>
+
+      <!-- Layer 4: 采集层 -->
+      <div class="arch-layer">
+        <div class="arch-layer-label">采集层</div>
+        <div class="arch-blocks">
+          <div class="arch-block">
+            <div class="arch-block-icon">🤖</div>
+            <div class="arch-block-title">Agent</div>
+            <div class="arch-block-desc">服务器采集</div>
+          </div>
+          <div class="arch-block">
+            <div class="arch-block-icon">🌐</div>
+            <div class="arch-block-title">SNMP</div>
+            <div class="arch-block-desc">网络设备</div>
+          </div>
+          <div class="arch-block">
+            <div class="arch-block-icon">🔑</div>
+            <div class="arch-block-title">SSH/Telnet</div>
+            <div class="arch-block-desc">远程采集</div>
+          </div>
+          <div class="arch-block">
+            <div class="arch-block-icon">📦</div>
+            <div class="arch-block-title">API集成</div>
+            <div class="arch-block-desc">第三方对接</div>
+          </div>
+        </div>
+      </div>
+      <div class="arch-connector"></div>
+
+      <!-- Layer 5: 基础设施层 -->
+      <div class="arch-layer">
+        <div class="arch-layer-label">基础设施</div>
+        <div class="arch-blocks">
+          <div class="arch-block">
+            <div class="arch-block-icon">🖥️</div>
+            <div class="arch-block-title">物理服务器</div>
+          </div>
+          <div class="arch-block">
+            <div class="arch-block-icon">☁️</div>
+            <div class="arch-block-title">虚拟化平台</div>
+          </div>
+          <div class="arch-block">
+            <div class="arch-block-icon">🔧</div>
+            <div class="arch-block-title">网络设备</div>
+          </div>
+          <div class="arch-block">
+            <div class="arch-block-icon">💾</div>
+            <div class="arch-block-title">存储设备</div>
+          </div>
+          <div class="arch-block">
+            <div class="arch-block-icon">🔒</div>
+            <div class="arch-block-title">安全设备</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS SECTION ═══ -->
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-num">2,178<span class="unit">+</span></div>
+      <div class="stat-label">纳管IT节点</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">99.99<span class="unit">%</span></div>
+      <div class="stat-label">监控可用性</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">200<span class="unit">+</span></div>
+      <div class="stat-label">监控指标项</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">60<span class="unit">%</span></div>
+      <div class="stat-label">故障恢复提速</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PREVIEW SECTION ═══ -->
+<section class="section preview-section" id="preview">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">产品体验</span>
+      <h2 class="section-title">看得见的运维，摸得着的管理</h2>
+      <p class="section-subtitle">从大屏指挥到移动巡检，多端协同的运维体验</p>
+    </div>
+
+    <div class="preview-grid">
+      <div class="preview-content">
+        <h2>3D运维大屏<br>一屏掌握全局态势</h2>
+        <p>融合3D地球、实时KPI、资源分布、告警趋势、机房环境于一体的大屏监控中心，支持全屏沉浸模式，是运维指挥的神经中枢。</p>
+        <ul class="preview-list">
+          <li><span class="check-icon">✓</span> 3D地球可视化全球节点分布与链路状态</li>
+          <li><span class="check-icon">✓</span> 6大KPI卡片实时刷新，趋势一目了然</li>
+          <li><span class="check-icon">✓</span> 告警信息实时滚动，支持分级过滤</li>
+          <li><span class="check-icon">✓</span> 机房温湿度、UPS、空调环境监控</li>
+          <li><span class="check-icon">✓</span> 资源使用率Top10排行，风险预判</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary btn-lg">体验完整大屏 →</a>
+      </div>
+      <div class="preview-mockup">
+        <div class="preview-mockup-header">
+          <div class="preview-mockup-dot" style="background:#FF5F57;"></div>
+          <div class="preview-mockup-dot" style="background:#FEBC2E;"></div>
+          <div class="preview-mockup-dot" style="background:#28C840;"></div>
+          <div style="margin-left:auto; font-size:12px; color:var(--t-on-dark-muted);">IT运维监控大屏</div>
+        </div>
+        <div class="preview-mockup-body">
+          <div class="preview-mockup-card">
+            <div class="label">服务器总数</div>
+            <div class="value">486</div>
+            <div class="bar"><div class="bar-fill" style="width:72%"></div></div>
+          </div>
+          <div class="preview-mockup-card">
+            <div class="label">CPU使用率</div>
+            <div class="value">42%</div>
+            <div class="bar"><div class="bar-fill green" style="width:42%"></div></div>
+          </div>
+          <div class="preview-mockup-card">
+            <div class="label">内存使用率</div>
+            <div class="value">68%</div>
+            <div class="bar"><div class="bar-fill orange" style="width:68%"></div></div>
+          </div>
+          <div class="preview-mockup-card">
+            <div class="label">磁盘使用率</div>
+            <div class="value">55%</div>
+            <div class="bar"><div class="bar-fill" style="width:55%"></div></div>
+          </div>
+          <div class="preview-mockup-card">
+            <div class="label">网络设备</div>
+            <div class="value">312</div>
+            <div class="bar"><div class="bar-fill green" style="width:85%"></div></div>
+          </div>
+          <div class="preview-mockup-card">
+            <div class="label">在线告警</div>
+            <div class="value" style="color:#F87171;">7</div>
+            <div class="bar"><div class="bar-fill orange" style="width:35%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SOLUTIONS BY ROLE ═══ -->
+<section class="section role-section" id="roles">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">解决方案</span>
+      <h2 class="section-title">为每个角色赋能</h2>
+      <p class="section-subtitle">无论您是管理者、工程师还是资产管理员，都能找到适合的工具</p>
+    </div>
+
+    <div class="role-grid">
+      <div class="role-card">
+        <div class="role-avatar" style="background:linear-gradient(135deg, var(--c-primary) 0%, var(--c-cyan) 100%);">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+        </div>
+        <h3>IT管理者</h3>
+        <p class="role-desc">掌握全局运维态势，数据驱动决策</p>
+        <ul class="role-benefits">
+          <li><span class="check">✓</span> 大屏一屏掌握全量IT资产健康度</li>
+          <li><span class="check">✓</span> SLA达成率、MTTR/MTBF趋势分析</li>
+          <li><span class="check">✓</span> 资产利用率与容量规划数据支撑</li>
+          <li><span class="check">✓</span> 合规审计报告一键导出</li>
+        </ul>
+      </div>
+
+      <div class="role-card">
+        <div class="role-avatar" style="background:linear-gradient(135deg, var(--c-accent) 0%, var(--c-accent-light) 100%);">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h3>运维工程师</h3>
+        <p class="role-desc">快速定位故障，高效处理告警</p>
+        <ul class="role-benefits">
+          <li><span class="check">✓</span> 告警自动关联CMDB拓扑定位根因</li>
+          <li><span class="check">✓</span> 自动化巡检模板释放重复劳动</li>
+          <li><span class="check">✓</span> 历史趋势对比辅助容量预判</li>
+          <li><span class="check">✓</span> 移动端随时接收告警与处理</li>
+        </ul>
+      </div>
+
+      <div class="role-card">
+        <div class="role-avatar" style="background:linear-gradient(135deg, var(--c-purple) 0%, #A78BFA 100%);">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </div>
+        <h3>资产管理员</h3>
+        <p class="role-desc">资产台账清晰准确，盘点轻松</p>
+        <ul class="role-benefits">
+          <li><span class="check">✓</span> 自动发现减少90%人工录入</li>
+          <li><span class="check">✓</span> 二维码扫码盘点，效率提升80%</li>
+          <li><span class="check">✓</span> 全生命周期状态可追溯</li>
+          <li><span class="check">✓</span> 变更审批工作流标准化</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA SECTION ═══ -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <h2>开启智能运维之旅</h2>
+    <p>预约1对1产品演示，让我们的解决方案顾问为您定制IT运维管控方案</p>
+    <div class="cta-form">
+      <input type="email" class="cta-input" placeholder="请输入您的工作邮箱">
+      <button class="btn btn-primary btn-lg">预约演示</button>
+    </div>
+    <div class="cta-actions">
+      <a href="#" class="btn btn-outline btn-lg" style="color:#fff; border-color:rgba(255,255,255,0.2);">📞 联系销售</a>
+      <a href="#" class="btn btn-outline btn-lg" style="color:#fff; border-color:rgba(255,255,255,0.2);">📄 下载白皮书</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">
+          <div class="nav-logo-mark">浙</div>
+          <div class="nav-logo-text">浙能数字</div>
+        </a>
+        <p>浙江浙能数字科技有限公司 — 致力于为企业提供IT基础设施智能管控解决方案，助力数字化转型。</p>
+      </div>
+      <div class="footer-col">
+        <h4>产品</h4>
+        <ul>
+          <li><a href="#">CMDB资产管理</a></li>
+          <li><a href="#">ITCM集中监控</a></li>
+          <li><a href="#">3D运维大屏</a></li>
+          <li><a href="#">移动端巡检</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>解决方案</h4>
+        <ul>
+          <li><a href="#">电力行业</a></li>
+          <li><a href="#">能源集团</a></li>
+          <li><a href="#">制造业</a></li>
+          <li><a href="#">政务部门</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>资源</h4>
+        <ul>
+          <li><a href="#">技术文档</a></li>
+          <li><a href="#">API手册</a></li>
+          <li><a href="#">白皮书</a></li>
+          <li><a href="#">案例中心</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>关于</h4>
+        <ul>
+          <li><a href="#">公司介绍</a></li>
+          <li><a href="#">联系我们</a></li>
+          <li><a href="#">人才招聘</a></li>
+          <li><a href="#">合作伙伴</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 浙江浙能数字科技有限公司 · 平台技术部 · 浙ICP备XXXXXXXX号</p>
+      <div class="footer-links">
+        <a href="#">隐私政策</a>
+        <a href="#">服务条款</a>
+        <a href="#">Cookie设置</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Product Tab Switcher
+function switchProduct(product) {
+  const tabs = document.querySelectorAll('.product-tab');
+  const cmdbFeatures = document.getElementById('cmdb-features');
+  const itcmFeatures = document.getElementById('itcm-features');
+
+  tabs.forEach(t => t.classList.remove('active'));
+
+  if (product === 'cmdb') {
+    tabs[0].classList.add('active');
+    cmdbFeatures.style.display = 'grid';
+    itcmFeatures.style.display = 'none';
+  } else {
+    tabs[1].classList.add('active');
+    cmdbFeatures.style.display = 'none';
+    itcmFeatures.style.display = 'grid';
+  }
+}
+
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('.nav');
+  if (window.scrollY > 50) {
+    nav.style.background = 'rgba(10,15,30,0.95)';
+    nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.3)';
+  } else {
+    nav.style.background = 'rgba(10,15,30,0.85)';
+    nav.style.boxShadow = 'none';
+  }
+});
+</script>
+
+</body>
+</html>

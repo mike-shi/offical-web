@@ -1,0 +1,16 @@
+<!-- ═══ CTA SECTION ═══ -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <h2>开启智能运维之旅</h2>
+    <p>预约1对1产品演示，让我们的解决方案顾问为您定制IT运维管控方案</p>
+    <div class="cta-form">
+      <input type="email" class="cta-input" placeholder="请输入您的工作邮箱" [(ngModel)]="demoEmail" (keyup.enter)="submitDemo()">
+      <button class="btn btn-primary btn-lg" (click)="submitDemo()">预约演示</button>
+    </div>
+    <p class="cta-success" *ngIf="demoSubmitted">✓ 预约成功，我们的顾问将在 1 个工作日内与您联系。</p>
+    <div class="cta-actions">
+      <a href="#" class="btn btn-outline btn-lg" style="color:#fff; border-color:rgba(255,255,255,0.2);">📞 联系销售</a>
+      <a href="#" class="btn btn-outline btn-lg" style="color:#fff; border-color:rgba(255,255,255,0.2);">📄 下载白皮书</a>
+    </div>
+  </div>
+</section>

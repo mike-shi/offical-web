@@ -1,0 +1,62 @@
+:host { display:block; }
+.preview-section { padding-top: calc(var(--sp-24) + var(--nav-h)); }
+/* ═══ DASHBOARD PREVIEW SECTION ═══ */
+.preview-section { background: var(--bg-white); }
+.preview-grid {
+  display:grid; grid-template-columns: 1fr 1fr; gap:var(--sp-12);
+  align-items:center;
+}
+.preview-content h2 {
+  font-size: 36px; font-weight:800; color:var(--t-heading);
+  letter-spacing:-0.03em; margin-bottom: var(--sp-5);
+}
+.preview-content p {
+  font-size:16px; color:var(--t-muted); line-height:1.7;
+  margin-bottom: var(--sp-6);
+}
+.preview-list { list-style:none; margin-bottom: var(--sp-8); }
+.preview-list li {
+  display:flex; align-items:flex-start; gap:var(--sp-3);
+  padding: var(--sp-3) 0; font-size:15px; color:var(--t-body);
+}
+.preview-list li .check-icon {
+  width:24px; height:24px; border-radius:50%;
+  background: #ECFDF5; color:var(--c-accent);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; font-size:14px; font-weight:700;
+}
+.preview-mockup {
+  background: linear-gradient(135deg, var(--bg-dark-2) 0%, var(--bg-dark) 100%);
+  border-radius: var(--r-xl); padding: var(--sp-5);
+  box-shadow: var(--shadow-xl);
+  border:1px solid rgba(255,255,255,0.08);
+}
+.preview-mockup-header {
+  display:flex; align-items:center; gap:var(--sp-2);
+  padding-bottom: var(--sp-4); border-bottom:1px solid rgba(255,255,255,0.06);
+  margin-bottom: var(--sp-4);
+}
+.preview-mockup-dot { width:10px; height:10px; border-radius:50%; }
+.preview-mockup-body {
+  display:grid; grid-template-columns:repeat(2,1fr); gap:var(--sp-3);
+}
+.preview-mockup-card {
+  background: rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06);
+  border-radius:var(--r-md); padding:var(--sp-4);
+}
+.preview-mockup-card .label { font-size:11px; color:var(--t-on-dark-muted); margin-bottom:4px; }
+.preview-mockup-card .value { font-size:24px; font-weight:700; color:#fff; font-family:'JetBrains Mono',monospace; }
+.preview-mockup-card .bar {
+  height:6px; border-radius:3px; background:rgba(255,255,255,0.06);
+  margin-top:var(--sp-3); overflow:hidden;
+}
+.preview-mockup-card .bar-fill {
+  height:100%; border-radius:3px;
+  background: linear-gradient(90deg, var(--c-primary) 0%, var(--c-cyan) 100%);
+}
+.preview-mockup-card .bar-fill.green { background: linear-gradient(90deg, var(--c-accent) 0%, var(--c-accent-light) 100%); }
+.preview-mockup-card .bar-fill.orange { background: linear-gradient(90deg, var(--c-warning) 0%, #D97706 100%); }
+
+@media (max-width: 1024px) {
+  .preview-grid { grid-template-columns:1fr; }
+}

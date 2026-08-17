@@ -1,0 +1,38 @@
+:host { display:block; }
+.role-section { padding-top: calc(var(--sp-24) + var(--nav-h)); }
+/* ═══ SOLUTIONS BY ROLE ═══ */
+.role-section { background: var(--bg-muted); }
+.role-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-6);
+}
+.role-card {
+  background:var(--bg-white); border:1px solid var(--border);
+  border-radius: var(--r-lg); padding: var(--sp-8) var(--sp-6);
+  transition: all var(--tr);
+}
+.role-card:hover { box-shadow: var(--shadow-lg); transform:translateY(-4px); }
+.role-avatar {
+  width:56px; height:56px; border-radius:var(--r-md);
+  display:flex; align-items:center; justify-content:center;
+  font-size:24px; font-weight:700; color:#fff;
+  margin-bottom: var(--sp-5);
+}
+.role-card h3 { font-size:18px; font-weight:700; color:var(--t-heading); margin-bottom:var(--sp-2); }
+.role-card .role-desc { font-size:14px; color:var(--t-muted); margin-bottom:var(--sp-5); }
+.role-benefits { list-style:none; }
+.role-benefits li {
+  font-size:14px; color:var(--t-body); padding:var(--sp-2) 0;
+  display:flex; align-items:flex-start; gap:var(--sp-2);
+  border-bottom:1px solid var(--border);
+}
+.role-benefits li:last-child { border-bottom:none; }
+.role-benefits li .check {
+  width:18px; height:18px; border-radius:50%;
+  background: var(--c-accent); flex-shrink:0; margin-top:2px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; color:#fff;
+}
+
+@media (max-width: 1024px) {
+  .role-grid { grid-template-columns:1fr; }
+}

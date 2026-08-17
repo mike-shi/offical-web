@@ -1,0 +1,84 @@
+/* ═══════════════════════════════════════════════════════════
+   DESIGN SYSTEM — 浙能数字 IT基础设施智能管控平台官网
+   Style: Minimalism + Glassmorphism Hero
+   Pattern: Enterprise Gateway
+   Font: Plus Jakarta Sans + JetBrains Mono
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  /* ── Brand Colors ── */
+  --c-primary: #2563EB;
+  --c-primary-dark: #1D4ED8;
+  --c-primary-light: #3B82F6;
+  --c-primary-50: #EFF6FF;
+  --c-primary-100: #DBEAFE;
+
+  /* ── Accent / Status ── */
+  --c-accent: #059669;       /* 监控绿 */
+  --c-accent-light: #10B981;
+  --c-warning: #F59E0B;
+  --c-danger: #EF4444;
+  --c-purple: #8B5CF6;
+  --c-cyan: #06B6D4;
+
+  /* ── Dark Surfaces (Hero / Footer) ── */
+  --bg-dark: #0A0F1E;
+  --bg-dark-2: #0F172A;
+  --bg-dark-3: #1E293B;
+  --bg-card-dark: rgba(255,255,255,0.05);
+  --border-dark: rgba(255,255,255,0.08);
+
+  /* ── Light Surfaces (Content) ── */
+  --bg-light: #F8FAFC;
+  --bg-white: #FFFFFF;
+  --bg-muted: #F1F5F9;
+
+  /* ── Text ── */
+  --t-heading: #0F172A;
+  --t-body: #334155;
+  --t-muted: #64748B;
+  --t-light: #94A3B8;
+  --t-on-dark: #F1F5F9;
+  --t-on-dark-muted: #94A3B8;
+
+  /* ── Borders ── */
+  --border: #E2E8F0;
+  --border-strong: #CBD5E1;
+
+  /* ── Spacing (4px base) ── */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 20px; --sp-6: 24px; --sp-8: 32px; --sp-10: 40px;
+  --sp-12: 48px; --sp-16: 64px; --sp-20: 80px; --sp-24: 96px;
+
+  /* ── Radius ── */
+  --r-sm: 6px; --r-md: 10px; --r-lg: 16px; --r-xl: 24px; --r-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
+  --shadow-xl: 0 24px 64px rgba(0,0,0,0.16);
+  --shadow-glow: 0 0 40px rgba(37,99,235,0.25);
+
+  /* ── Transitions ── */
+  --tr-fast: 150ms ease-out;
+  --tr: 250ms ease-out;
+  --tr-slow: 400ms ease-out;
+
+  /* ── Layout ── */
+  --max-w: 1200px;
+  --nav-h: 68px;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+body {
+  font-family:'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--t-body);
+  background: var(--bg-light);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a { color:inherit; text-decoration:none; }
+img { max-width:100%; display:block; }
+button { font-family:inherit; cursor:pointer; border:none; outline:none; }
